@@ -4,6 +4,7 @@ import Container from '../components/common/Container'
 import { BsMic } from 'react-icons/bs'
 import { Audio } from 'svg-loaders-react'
 import { GiSpeaker } from 'react-icons/gi'
+import { MdContentCopy } from 'react-icons/md'
 
 let SpeechRecognition
 let recognition
@@ -46,17 +47,27 @@ const Home = () => {
     window.speechSynthesis.speak(speech)
   }
 
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(text)
+  }
+
   return (
     <Layout>
       <Container>
         <div className='h-screen flex flex-col justify-center items-center '>
-          <div className='py-16 flex space-x-4'>
+          <div className='py-16'>
             <h3 className='text-gray-100 text-xl'>{text}</h3>
+          </div>
+          <div className='flex justify-center space-x-4 pb-4'>
             <GiSpeaker
               className='text-gray-100 text-2xl cursor-pointer'
               onClick={() => {
                 readMessage(text)
               }}
+            />
+            <MdContentCopy
+              className='text-gray-100 text-2xl p-0.5 cursor-pointer'
+              onClick={copyToClipboard}
             />
           </div>
           <button

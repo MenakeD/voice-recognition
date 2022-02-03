@@ -27,6 +27,7 @@ const Home = () => {
 
     recognition.onstart = () => {
       setIsListening(true)
+      setAlert('Mic is on. Say something')
     }
 
     recognition.onresult = (event) => {
@@ -67,7 +68,7 @@ const Home = () => {
     <Layout title='Voice Recognition'>
       <Container>
         <div className='h-screen flex flex-col justify-center items-center '>
-          <div className='pt-16 pb-10'>
+          <div className='pt-16 pb-12'>
             <h3 className='text-gray-100 text-3xl text-center'>
               {text || (isListening ? 'Listening ...' : 'Tap Button to Start')}
             </h3>
@@ -106,6 +107,7 @@ const Home = () => {
             onClick={() => {
               if (!isListening) {
                 setText('')
+
                 handleListen()
               } else {
                 recognition.abort()

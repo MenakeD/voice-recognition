@@ -6,6 +6,7 @@ import { Audio } from 'svg-loaders-react'
 import { GiSpeaker } from 'react-icons/gi'
 import { MdContentCopy } from 'react-icons/md'
 import { HiX } from 'react-icons/hi'
+import Toast from '../components/common/Toast'
 
 let SpeechRecognition, recognition
 
@@ -42,6 +43,10 @@ const Home = () => {
     recognition.onend = () => {
       setIsListening(false)
     }
+
+    recognition.onnomatch = () => {
+      setAlert('Speech not recognized')
+    }
   }
 
   const readMessage = (message) => {
@@ -66,8 +71,7 @@ const Home = () => {
         <div className='h-screen flex flex-col justify-center items-center '>
           <div className='pt-16 pb-10'>
             <h3 className='text-gray-100 text-3xl text-center'>
-              {text ||
-                (isListening ? 'Recording Audio ...' : 'Tap Button to Start')}
+              {text || (isListening ? 'Listening ...' : 'Tap Button to Start')}
             </h3>
             {text && (
               <p className='text-gray-200 text-sm pt-5 text-center'>
@@ -119,13 +123,7 @@ const Home = () => {
           </button>
         </div>
       </Container>
-      {alert && (
-        <div className='w-full flex justify-center'>
-          <div className='bg-gray-100  fixed bottom-0 px-4 rounded py-2 mb-12'>
-            <p>{alert}</p>
-          </div>
-        </div>
-      )}
+      {alert && <Toast alert={alert} setAlert={setAlert} duration={3000} />}
     </Layout>
   )
 }

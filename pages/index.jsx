@@ -83,21 +83,21 @@ const Home = () => {
             )}
           </div>
           {text && (
-            <div className='flex justify-center space-x-4 pb-8'>
+            <div className='flex justify-center space-x-6 pt-2 pb-8'>
               <HiX
-                className='text-gray-100 text-2xl cursor-pointer'
+                className='text-gray-100 text-3xl cursor-pointer hover:scale-95 hover:text-red-400 transition-all duration-300 ease-in'
                 onClick={() => {
                   setText('')
                 }}
               />
               <GiSpeaker
-                className='text-gray-100 text-2xl cursor-pointer'
+                className='text-gray-100 text-3xl cursor-pointer hover:text-green-400 hover:scale-95 transition-all duration-300 ease-in'
                 onClick={() => {
                   readMessage(text)
                 }}
               />
               <MdContentCopy
-                className='text-gray-100 text-2xl p-0.5 cursor-pointer'
+                className='text-gray-100 text-3xl p-0.5 hover:text-blue-400 cursor-pointer hover:scale-95 transition-all duration-300 ease-in'
                 onClick={copyToClipboard}
               />
             </div>

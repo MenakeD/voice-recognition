@@ -26,12 +26,10 @@ const Home = () => {
     recognition.start()
 
     recognition.onstart = () => {
-      console.log('Voice recognition activated')
       setIsListening(true)
     }
 
     recognition.onresult = (event) => {
-      console.log(event)
       const current = event.resultIndex
       const transcript = event.results[current][0].transcript
       const confidence = event.results[current][0].confidence
@@ -66,7 +64,7 @@ const Home = () => {
   }
 
   return (
-    <Layout>
+    <Layout title='Voice Recognition'>
       <Container>
         <div className='h-screen flex flex-col justify-center items-center '>
           <div className='pt-16 pb-10'>
